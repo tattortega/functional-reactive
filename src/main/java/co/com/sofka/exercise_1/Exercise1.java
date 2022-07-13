@@ -23,6 +23,13 @@ public class Exercise1 {
         emailDominio.subscribe(element -> log.info(element.toString()));
     }
 
+    private static void emailDomainCorrect(List<Email> list) {
+        Flux.fromIterable(list)
+                .map(email -> email.getDomain().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")
+                        ? "Correo valido: " + email : "Correo invalido: " + email)
+                .subscribe(log::info);
+    }
+
     public static void main(String[] args) {
 
         List<Email> listEmails = new ArrayList<>();
@@ -62,5 +69,6 @@ public class Exercise1 {
         emailFilteredByDominio(listEmails, "@gmail.com");
         emailFilteredByDominio(listEmails, "@hotmail.com");
         emailFilteredByDominio(listEmails, "@outlook.com");
+        emailDomainCorrect(listEmails);
     }
 }
