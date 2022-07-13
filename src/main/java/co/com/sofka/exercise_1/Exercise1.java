@@ -16,6 +16,13 @@ public class Exercise1 {
                 .subscribe(email -> log.info(email.toString()));
     }
 
+    private static void emailFilteredByDominio(List<Email> list, String dominio) {
+        Flux<Email> emailDominio = Flux.fromIterable(list)
+                .filter(email -> email.getDomain().contains(dominio));
+        emailDominio.count().subscribe(element -> log.info("Cantidad de correos " + dominio + ": " + element));
+        emailDominio.subscribe(element -> log.info(element.toString()));
+    }
+
     public static void main(String[] args) {
 
         List<Email> listEmails = new ArrayList<>();
@@ -52,5 +59,8 @@ public class Exercise1 {
 
         log.info("Correos sin repetir");
         emailDistinct(listEmails);
+        emailFilteredByDominio(listEmails, "@gmail.com");
+        emailFilteredByDominio(listEmails, "@hotmail.com");
+        emailFilteredByDominio(listEmails, "@outlook.com");
     }
 }
