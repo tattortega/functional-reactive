@@ -6,16 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Clase principal con los métodos para los correos
+ *
+ * @author Ricardo Ortega <tattortega.28@gmail.com>
+ * @version 1.0.0 2022-07-13
+ * @since 1.0.0
+ */
 public class Exercise1 {
 
     private static final Logger log = Logger.getLogger("MyLogger");
 
+    /**
+     * Método para diferenciar correos repetidos
+     * @param list Lista de correos
+     */
     private static void emailDistinct(List<Email> list) {
         Flux.fromIterable(list)
                 .distinct(Email::getDomain)
                 .subscribe(email -> log.info(email.toString()));
     }
 
+    /**
+     * Método para filtrar correos por dominio
+     * @param list Lista de correos
+     * @param dominio Dominio a filtar
+     */
     private static void emailFilteredByDominio(List<Email> list, String dominio) {
         Flux<Email> emailDominio = Flux.fromIterable(list)
                 .filter(email -> email.getDomain().contains(dominio));
@@ -23,6 +39,10 @@ public class Exercise1 {
         emailDominio.subscribe(element -> log.info(element.toString()));
     }
 
+    /**
+     * Método para validar el dominio del correo
+     * @param list Lista de correos
+     */
     private static void emailDomainCorrect(List<Email> list) {
         Flux.fromIterable(list)
                 .map(email -> email.getDomain().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")
@@ -30,12 +50,20 @@ public class Exercise1 {
                 .subscribe(log::info);
     }
 
+    /**
+     * Método para contar los correos validos
+     * @param list Lista de correos
+     */
     private static void emailCount(List<Email> list) {
         Flux<Email> emailCount = Flux.fromIterable(list)
                 .filter(email -> email.getDomain().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"));
         emailCount.count().subscribe(element -> log.info("Cantidad de correos: " + element));
     }
 
+    /**
+     * Método para evaluar el estado del correo
+     * @param list Lista de correos
+     */
     private static void emailStatus(List<Email> list) {
         Flux.fromIterable(list)
                 .filter(Email::getStatus)
