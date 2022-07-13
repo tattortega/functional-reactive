@@ -30,6 +30,12 @@ public class Exercise1 {
                 .subscribe(log::info);
     }
 
+    private static void emailCount(List<Email> list) {
+        Flux<Email> emailCount = Flux.fromIterable(list)
+                .filter(email -> email.getDomain().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"));
+        emailCount.count().subscribe(element -> log.info("Cantidad de correos: " + element));
+    }
+
     public static void main(String[] args) {
 
         List<Email> listEmails = new ArrayList<>();
@@ -70,5 +76,6 @@ public class Exercise1 {
         emailFilteredByDominio(listEmails, "@hotmail.com");
         emailFilteredByDominio(listEmails, "@outlook.com");
         emailDomainCorrect(listEmails);
+        emailCount(listEmails);
     }
 }
