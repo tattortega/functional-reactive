@@ -36,6 +36,12 @@ public class Exercise1 {
         emailCount.count().subscribe(element -> log.info("Cantidad de correos: " + element));
     }
 
+    private static void emailStatus(List<Email> list) {
+        Flux.fromIterable(list)
+                .filter(Email::getStatus)
+                .subscribe(ele -> log.info(ele.toString()));
+    }
+
     public static void main(String[] args) {
 
         List<Email> listEmails = new ArrayList<>();
@@ -77,5 +83,7 @@ public class Exercise1 {
         emailFilteredByDominio(listEmails, "@outlook.com");
         emailDomainCorrect(listEmails);
         emailCount(listEmails);
+        log.info("Correos enviados");
+        emailStatus(listEmails);
     }
 }
