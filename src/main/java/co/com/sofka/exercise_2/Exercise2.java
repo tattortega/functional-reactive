@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ * Clase principal para filtrar palabras soeces del chat
+ *
+ * @author Ricardo Ortega <tattortega.28@gmail.com>
+ * @version 1.0.0 2022-07-13
+ * @since 1.0.0
+ */
 public class Exercise2 {
 
     private static final Logger log = Logger.getLogger("MyLogger");
