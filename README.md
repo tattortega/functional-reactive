@@ -18,6 +18,19 @@ Crear un chat, un input donde lo que se ingrese sea almacenado en una lista, par
 ## Ejercicio 3
 Crear dos funciones, una para resolver derivadas y otra integrales, pero esta se deben usar si quiero hacer la contraria, es decir, si quiero hacer una derivada inversa o una integral inversa.
 
+## Instrucciones para ejecutar el programa
+1. Clone el repositorio
++ git clone https://github.com/tattortega/functional-reactive.git
+
+2. Abra el proyecto en IntelliJ Idea
+
+
+3. Ejecute el ejercicio que desee dentro del paquete corespondiente
++ Run 'Exercise1'
++ Run 'Exercise2'
++ Run 'Exercise3'
+
+
 ### Desarrollador
 + Ricardo Ortega - tattortega.28@gmail.com
 
